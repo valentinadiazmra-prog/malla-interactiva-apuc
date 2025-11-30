@@ -1,16 +1,135 @@
+/* --------------------
+   GENERAL
+----------------------*/
 body {
     background: #f7f7fa;
     font-family: Arial, sans-serif;
     margin: 0;
+    padding: 0;
+    transition: 0.3s;
+}
+
+header {
+    text-align: center;
     padding: 20px;
 }
 
 h1 {
-    text-align: center;
     color: #512a79;
-    margin-bottom: 30px;
 }
 
+#top-controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#buscador {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+
+#pdf-btn {
+    padding: 8px 12px;
+    border: none;
+    background: #7d52a4;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* --------------------
+   MODO OSCURO
+----------------------*/
+body.dark {
+    background: #1f1f24;
+    color: #eee;
+}
+
+body.dark .semestre {
+    background: #2b2b33;
+}
+
+body.dark .course {
+    background: #7d52a4;
+}
+
+body.dark #pdf-btn {
+    background: #b57edc;
+}
+
+/* Switch modo oscuro */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+}
+
+.switch input { display: none; }
+
+.slider {
+    position: absolute;
+    background-color: #ccc;
+    border-radius: 24px;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #7d52a4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* --------------------
+   PROGRESO
+----------------------*/
+#progreso-container {
+    width: 80%;
+    height: 20px;
+    margin: 0 auto 20px;
+    background: #ddd;
+    border-radius: 10px;
+    position: relative;
+}
+
+#progreso-bar {
+    background: #b57edc;
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.4s;
+}
+
+#progreso-text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #512a79;
+}
+
+/* --------------------
+   SEMESTRES
+----------------------*/
 #malla-container {
     position: relative;
 }
@@ -26,29 +145,28 @@ h1 {
 
 .semestre {
     background: white;
+    padding: 10px;
     border-radius: 10px;
-    padding: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .semestre-title {
     font-weight: bold;
-    text-align: center;
     color: #512a79;
+    text-align: center;
     margin-bottom: 10px;
 }
 
+/* Cursos */
 .course {
     background: #b57edc;
     border: 3px solid #8c4ab8;
-    padding: 12px;
+    padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
     color: white;
-    font-size: 14px;
     cursor: pointer;
     transition: 0.2s;
-    position: relative;
 }
 
 .course:hover {
@@ -56,8 +174,8 @@ h1 {
 }
 
 .course.locked {
-    background: #cfcfcf;
-    border-color: #9d9d9d;
+    background: #d2d2d2;
+    border-color: #a3a3a3;
     color: #555;
     cursor: not-allowed;
 }
@@ -67,25 +185,38 @@ h1 {
     border-color: #512a79;
 }
 
-/* SVG lines */
+/* --------------------
+   SVG LÍNEAS
+----------------------*/
 #lineas {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
 }
 
-/* Tooltip */
+line {
+    stroke-dasharray: 6;
+    animation: dash 1.5s linear infinite;
+}
+
+@keyframes dash {
+    0% { stroke-dashoffset: 20; }
+    100% { stroke-dashoffset: 0; }
+}
+
+/* --------------------
+   TOOLTIP
+----------------------*/
 .tooltip {
     position: absolute;
+    padding: 8px;
     background: #512a79;
-    padding: 10px;
     color: white;
     border-radius: 6px;
+    font-size: 12px;
     display: none;
-    font-size: 13px;
     z-index: 100;
     pointer-events: none;
 }
