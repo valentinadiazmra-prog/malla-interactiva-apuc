@@ -41,3 +41,12 @@ function showDetail(c) {
 }
 
 document.addEventListener('DOMContentLoaded', render);
+let malla = []; // global
+
+async function loadData() {
+  const res = await fetch('./data/malla.json');
+  malla = await res.json();
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', loadData);
