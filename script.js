@@ -1,3 +1,7 @@
+//---------------------------------------------------------
+//  DATOS COMPLETOS DE LOS SEMESTRES 1 AL 10
+//---------------------------------------------------------
+
 const semestres = [
     // -------------------------------
     // 1° SEMESTRE
@@ -23,7 +27,7 @@ const semestres = [
             { name: "Introducción a la Microeconomía", code: "EAE11A", credits: 10, prereq: [] },
             { name: "Comportamiento Organizacional", code: "ADP001S", credits: 10, prereq: [] },
             { name: "Introducción al Derecho", code: "ADP001D", credits: 10, prereq: [] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -37,7 +41,7 @@ const semestres = [
             { name: "Fundamentos de la Macroeconomía", code: "ADP001E", credits: 10, prereq: [] },
             { name: "Gestión Pública II", code: "ADP003G", credits: 10, prereq: [] },
             { name: "Introducción a las Políticas Públicas", code: "GOB1001", credits: 10, prereq: [] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -51,7 +55,7 @@ const semestres = [
             { name: "Economía del Sector Público", code: "ADP002E", credits: 10, prereq: ["ADP001E"] },
             { name: "Introducción a la Política Comparada", code: "ICP103", credits: 10, prereq: [] },
             { name: "Instituciones y Garantías del Estado", code: "ADP002D", credits: 10, prereq: [] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -65,7 +69,7 @@ const semestres = [
             { name: "Contabilidad I", code: "EAA1210", credits: 10, prereq: [] },
             { name: "Política en Gestión y PP", code: "ADP201C", credits: 10, prereq: ["ICP101"] },
             { name: "Régimen Jurídico de la Administración del Estado", code: "ADP201D", credits: 10, prereq: ["ADP002D"] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -79,7 +83,7 @@ const semestres = [
             { name: "Evaluación de Programas Públicos", code: "ADP201G", credits: 10, prereq: ["ADP004G"] },
             { name: "Administración Financiera del Estado", code: "ADP202G", credits: 10, prereq: ["EAE11A", "ADP001E"] },
             { name: "Minor I", code: "MINOR1", credits: 10, prereq: [] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -93,7 +97,7 @@ const semestres = [
             { name: "Gestión de Personas en el Sector Público", code: "ADP201E", credits: 10, prereq: ["ADP001S"] },
             { name: "Minor II", code: "MINOR2", credits: 10, prereq: [] },
             { name: "Minor III", code: "MINOR3", credits: 10, prereq: [] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -106,8 +110,7 @@ const semestres = [
             { name: "Transformación Digital", code: "ADP203I", credits: 10, prereq: [] },
             { name: "Gestión de Proyectos Públicos (Capstone)", code: "ADP203G", credits: 10, prereq: ["ADP201I"] },
             { name: "Minor IV", code: "MINOR4", credits: 10, prereq: [] },
-          { name: "Minor V", code: "MINOR5", credits: 10, prereq: [] },
-          { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
+            { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
 
@@ -121,7 +124,7 @@ const semestres = [
             { name: "Probidad y Transparencia", code: "ADP302G", credits: 5, prereq: [] },
             { name: "Habilidades Directivas", code: "ADP301E", credits: 10, prereq: [] },
             { name: "Auditoría Gubernamental", code: "ADP303G", credits: 10, prereq: [] },
-            { name: "Optativo de Profundización", code: "OPT-PROF", credits: 20, prereq: [] }
+            { name: "Optativo de Profundización", code: "OPTPROF" + crypto.randomUUID(), credits: 20, prereq: [] }
         ]
     },
 
@@ -137,16 +140,25 @@ const semestres = [
         ]
     }
 ];
-// ----------------------------------------
-//  CREAR LA UI
-// ----------------------------------------
+
+
+//---------------------------------------------------------
+//  ELEMENTOS DEL DOM
+//---------------------------------------------------------
 
 let approved = new Set();
 const semestresContainer = document.getElementById("semestres");
 const svg = document.getElementById("lineas");
 const tooltip = document.getElementById("tooltip");
+const buscador = document.getElementById("buscador");
+const progresoBar = document.getElementById("progreso-bar");
+const progresoText = document.getElementById("progreso-text");
 
-// Crear columnas por semestre
+
+//---------------------------------------------------------
+//  CREAR INTERFAZ DE SEMESTRES Y CURSOS
+//---------------------------------------------------------
+
 semestres.forEach((sem) => {
     const col = document.createElement("div");
     col.className = "semestre";
@@ -154,24 +166,24 @@ semestres.forEach((sem) => {
     const title = document.createElement("div");
     title.className = "semestre-title";
     title.textContent = sem.nombre;
+
     col.appendChild(title);
 
     sem.cursos.forEach(c => {
         const div = document.createElement("div");
         div.classList.add("course");
+
         if (c.prereq.length) div.classList.add("locked");
 
         div.id = c.code;
         div.dataset.code = c.code;
-        div.dataset.desc = c.desc || "";
         div.dataset.credits = c.credits;
+        div.dataset.name = c.name;
 
         div.textContent = c.name;
 
-        // Click aprobar
         div.onclick = () => toggleCourse(c);
 
-        // Tooltip
         div.onmousemove = (e) => showTooltip(e, c);
         div.onmouseleave = () => tooltip.style.display = "none";
 
@@ -181,9 +193,10 @@ semestres.forEach((sem) => {
     semestresContainer.appendChild(col);
 });
 
-// ----------------------------------------
-//  ACTUALIZAR BLOQUEOS
-// ----------------------------------------
+
+//---------------------------------------------------------
+//  APROBAR / DESAPROBAR CURSO
+//---------------------------------------------------------
 
 function toggleCourse(course) {
     const el = document.getElementById(course.code);
@@ -200,7 +213,13 @@ function toggleCourse(course) {
 
     updateLocks();
     drawLines();
+    updateProgress();
 }
+
+
+//---------------------------------------------------------
+//  BLOQUEOS SEGÚN PRERREQUISITOS
+//---------------------------------------------------------
 
 function updateLocks() {
     semestres.forEach(sem =>
@@ -211,6 +230,7 @@ function updateLocks() {
             if (unmet) {
                 el.classList.add("locked");
                 el.classList.remove("approved");
+                approved.delete(c.code);
             } else {
                 el.classList.remove("locked");
             }
@@ -218,9 +238,10 @@ function updateLocks() {
     );
 }
 
-// ----------------------------------------
-//  CONEXIONES SVG ENTRE PRERREQUISITOS
-// ----------------------------------------
+
+//---------------------------------------------------------
+//  LÍNEAS SVG ENTRE PRERREQUISITOS
+//---------------------------------------------------------
 
 function drawLines() {
     svg.innerHTML = "";
@@ -232,16 +253,17 @@ function drawLines() {
 
             c.prereq.forEach(req => {
                 const origin = document.getElementById(req);
+                if (!origin) return;
+
                 const rect1 = origin.getBoundingClientRect();
 
-                // Coordenadas
                 const x1 = rect1.left + rect1.width / 2 + window.scrollX;
                 const y1 = rect1.bottom + window.scrollY;
 
                 const x2 = rect2.left + rect2.width / 2 + window.scrollX;
                 const y2 = rect2.top + window.scrollY;
 
-                const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
                 line.setAttribute("x1", x1);
                 line.setAttribute("y1", y1);
                 line.setAttribute("x2", x2);
@@ -255,11 +277,12 @@ function drawLines() {
     );
 }
 
-setTimeout(drawLines, 400);
+setTimeout(drawLines, 600);
 
-// ----------------------------------------
+
+//---------------------------------------------------------
 //  TOOLTIP
-// ----------------------------------------
+//---------------------------------------------------------
 
 function showTooltip(e, course) {
     tooltip.style.display = "block";
@@ -273,3 +296,64 @@ function showTooltip(e, course) {
         Reqs: ${course.prereq.length ? course.prereq.join(", ") : "Ninguno"}
     `;
 }
+
+
+//---------------------------------------------------------
+//  BUSCADOR DE CURSOS
+//---------------------------------------------------------
+
+buscador.addEventListener("input", () => {
+    const query = buscador.value.toLowerCase();
+
+    document.querySelectorAll(".course").forEach(c => {
+        const name = c.dataset.name.toLowerCase();
+        c.style.display = name.includes(query) ? "block" : "none";
+    });
+
+    drawLines();
+});
+
+
+//---------------------------------------------------------
+//  PROGRESO
+//---------------------------------------------------------
+
+function updateProgress() {
+    const total = document.querySelectorAll(".course").length;
+    const aprobados = document.querySelectorAll(".course.approved").length;
+
+    const porcentaje = Math.round((aprobados / total) * 100);
+
+    progresoBar.style.width = porcentaje + "%";
+    progresoText.textContent = `Avance: ${porcentaje}%`;
+}
+
+
+//---------------------------------------------------------
+//  MODO OSCURO
+//---------------------------------------------------------
+
+const toggleDark = document.getElementById("dark-toggle");
+
+toggleDark.addEventListener("change", () => {
+    document.body.classList.toggle("dark");
+});
+
+
+//---------------------------------------------------------
+//  EXPORTAR PDF
+//---------------------------------------------------------
+
+document.getElementById("pdf-btn").addEventListener("click", async () => {
+    const area = document.body;
+
+    const canvas = await html2canvas(area);
+    const img = canvas.toDataURL("image/png");
+
+    const pdf = new jspdf.jsPDF("p", "mm", "a4");
+    const width = 210;
+    const height = (canvas.height * width) / canvas.width;
+
+    pdf.addImage(img, "PNG", 0, 0, width, height);
+    pdf.save("malla_AP_UC.pdf");
+});
