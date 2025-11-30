@@ -1,38 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Malla Interactiva - Ejemplo</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Malla Interactiva AP</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Malla Interactiva - Universidad</h1>
-  </header>
 
-  <main>
-    <section id="grid-container" aria-label="Malla curricular"></section>
+  <h1>Malla Interactiva – Administración Pública UC</h1>
 
-    <aside id="detail-panel" aria-live="polite">
-      <h2>Detalles</h2>
-      <div id="detail-content">Haz clic en una asignatura.</div>
-    </aside>
-  </main>
+  <div id="grid"></div>
 
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-<div id="filters">
-  <label>Tipo:
-    <select id="filter-type">
-      <option value="todos">Todos</option>
-      <option value="obligatorio">Obligatorio</option>
-      <option value="optativo">Optativo</option>
-    </select>
-  </label>
-
-  <input id="search" placeholder="Buscar ramo..." />
-
-  <button id="reset-btn">Reset</button>
-</div>
