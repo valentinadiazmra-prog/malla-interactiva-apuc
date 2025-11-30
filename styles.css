@@ -1,10 +1,49 @@
-:root{ --gap:10px; --card:#f5f5f5; --accent:#2b7cff; }
-body{ font-family:system-ui,Segoe UI,Arial; margin:0; padding:16px; background:#fff; color:#111; }
-header h1{ margin:0 0 12px; font-size:20px; }
-main{ display:grid; grid-template-columns: 1fr 320px; gap:16px; align-items:start; }
-#grid-container{ display:grid; grid-template-columns: repeat(3, 1fr); gap:var(--gap); }
-.semester{ border:1px solid #e1e1e1; padding:8px; background:#fafafa; border-radius:6px; }
-.semester h3{ margin:0 0 8px; font-size:14px; }
-.course{ background:var(--card); padding:8px; margin:6px 0; border-radius:6px; cursor:pointer; transition:transform .12s; }
-.course:hover{ transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,0.06); }
-#detail-panel{ border-left:1px solid #eee; padding-left:12px; }
+body {
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #512a79;
+  margin-bottom: 30px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 10px;
+}
+
+/* Bloque del ramo */
+.course {
+  padding: 15px;
+  border-radius: 10px;
+  background: #b57edc;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  border: 3px solid #8c4ab8;
+  transition: 0.25s;
+}
+
+.course.locked {
+  background: #cfcfcf;
+  border-color: #9d9d9d;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.course.approved {
+  background: #7d52a4;
+  border-color: #512a79;
+}
+
+/* Hover solo si está desbloqueado */
+.course:not(.locked):hover {
+  transform: scale(1.05);
+}
