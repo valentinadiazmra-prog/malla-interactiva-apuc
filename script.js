@@ -246,6 +246,26 @@ function updateLocks() {
 function drawLines() {
     svg.innerHTML = "";
 
+    // Definir marcador de flecha (solo se agrega una vez)
+    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+
+    const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+    marker.setAttribute("id", "arrowhead");
+    marker.setAttribute("markerWidth", "12");
+    marker.setAttribute("markerHeight", "12");
+    marker.setAttribute("refX", "6");
+    marker.setAttribute("refY", "3");
+    marker.setAttribute("orient", "auto");
+
+    const arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    arrowPath.setAttribute("d", "M 0 0 L 6 3 L 0 6 z");
+    arrowPath.setAttribute("fill", "#9998cd");
+
+    marker.appendChild(arrowPath);
+    defs.appendChild(marker);
+    svg.appendChild(defs);
+
+    // Dibujar líneas curvas con flecha
     semestres.forEach(sem =>
         sem.cursos.forEach(c => {
             const target = document.getElementById(c.code);
@@ -257,27 +277,41 @@ function drawLines() {
 
                 const rect1 = origin.getBoundingClientRect();
 
+                // Coordenadas de inicio / fin
                 const x1 = rect1.left + rect1.width / 2 + window.scrollX;
                 const y1 = rect1.bottom + window.scrollY;
 
                 const x2 = rect2.left + rect2.width / 2 + window.scrollX;
                 const y2 = rect2.top + window.scrollY;
 
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", x1);
-                line.setAttribute("y1", y1);
-                line.setAttribute("x2", x2);
-                line.setAttribute("y2", y2);
-                line.setAttribute("stroke", "#512a79");
-                line.setAttribute("stroke-width", "3");
+                // Curva suave
+                const cx1 = x1;
+                const cy1 = (y1 + y2) / 2;
 
-                svg.appendChild(line);
+                const cx2 = x2;
+                const cy2 = (y1 + y2) / 2;
+
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+                const d = `M ${x1},${y1} C ${cx1},${cy1} ${cx2},${cy2} ${x2},${y2}`;
+                path.setAttribute("d", d);
+
+                // Estilo de la línea
+                path.setAttribute("stroke", "#9998cd");
+                path.setAttribute("stroke-width", "3");
+                path.setAttribute("fill", "none");
+                path.setAttribute("stroke-linecap", "round");
+                path.setAttribute("marker-end", "url(#arrowhead)");
+
+                // Animación de línea suave
+                path.style.strokeDasharray = "6";
+                path.style.animation = "dash 2s linear infinite";
+
+                svg.appendChild(path);
             });
         })
     );
 }
-
-setTimeout(drawLines, 600);
 
 
 //---------------------------------------------------------
