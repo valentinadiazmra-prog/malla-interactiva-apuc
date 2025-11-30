@@ -220,3 +220,37 @@ line {
     z-index: 100;
     pointer-events: none;
 }
+/* Matemáticas */
+.ramo-matematica {
+    background-color: #a6bec1 !important;
+}
+
+/* Derecho */
+.ramo-derecho {
+    background-color: #bfaf95 !important;
+}
+
+/* Minor */
+.ramo-minor {
+    background-color: #df97b9 !important;
+}
+
+/* Economía */
+.ramo-economia {
+    background-color: #9998cd !important;
+}
+
+/* Optativos de Formación General */
+.ramo-fg {
+    background-color: #815db7 !important;
+}
+
+/* Ciencia Política */
+.ramo-cienciapol {
+    background-color: #a1a0d5 !important;
+}
+
+/* Resto de ramos (color base) */
+.ramo-base {
+    background-color: #b57edc !important;
+}
