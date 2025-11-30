@@ -173,7 +173,39 @@ semestres.forEach((sem) => {
     sem.cursos.forEach(c => {
         const div = document.createElement("div");
         div.classList.add("course");
+        
+// ---- COLORES POR GRUPOS ----
+const math = ["MAT1000", "MAT1100", "EYP1010"];
+const derecho = ["ADP001G", "ADP001D", "ADP002D", "ADP201D"];
+const minor = ["MINOR1", "MINOR2", "MINOR3", "MINOR4", "MINOR5"];
+const economia = ["EAE11A", "ADP001E", "ADP002E", "ADP202G"];
+const fg = ["FIL2001"]; // Filosofía
+const cienciaPolitica = ["ICP101", "ICP103"];
 
+// Optativos FG (todos los FG generados)
+if (c.code.startsWith("FG")) {
+    div.classList.add("ramo-fg");
+} 
+else if (math.includes(c.code)) {
+    div.classList.add("ramo-matematica");
+}
+else if (derecho.includes(c.code)) {
+    div.classList.add("ramo-derecho");
+}
+else if (minor.includes(c.code)) {
+    div.classList.add("ramo-minor");
+}
+else if (economia.includes(c.code)) {
+    div.classList.add("ramo-economia");
+}
+else if (cienciaPolitica.includes(c.code)) {
+    div.classList.add("ramo-cienciapol");
+}
+else {
+    // Resto
+    div.classList.add("ramo-base");
+}
+        
         if (c.prereq.length) div.classList.add("locked");
 
         div.id = c.code;
