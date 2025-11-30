@@ -110,6 +110,7 @@ const semestres = [
             { name: "Transformación Digital", code: "ADP203I", credits: 10, prereq: [] },
             { name: "Gestión de Proyectos Públicos (Capstone)", code: "ADP203G", credits: 10, prereq: ["ADP201I"] },
             { name: "Minor IV", code: "MINOR4", credits: 10, prereq: [] },
+            { name: "Minor V", code: "MINOR5", credits: 10, prereq: [] },
             { name: "Optativo de Formación General", code: "FG" + crypto.randomUUID(), credits: 10, prereq: [] }
         ]
     },
