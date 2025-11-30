@@ -254,3 +254,14 @@ line {
 .ramo-base {
     background-color: #b57edc !important;
 }
+
+/* Bordes generales para todos los grupos */
+.ramo-matematica,
+.ramo-derecho,
+.ramo-minor,
+.ramo-economia,
+.ramo-fg,
+.ramo-cienciapol,
+.ramo-base {
+    border: 2px solid #f5f5f5 !important;
+}
