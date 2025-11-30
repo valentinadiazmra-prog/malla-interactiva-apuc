@@ -388,7 +388,6 @@ document.getElementById("pdf-btn").addEventListener("click", async () => {
     const pdf = new jspdf.jsPDF("p", "mm", "a4");
     const width = 210;
     const height = (canvas.height * width) / canvas.width;
-
     pdf.addImage(img, "PNG", 0, 0, width, height);
     pdf.save("malla_AP_UC.pdf");
 });
